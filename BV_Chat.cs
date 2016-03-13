@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>..............
+/// <summary>...............
 /// This simple chat example showcases the use of RPC targets and targetting certain players via RPCs.
 /// </summary>
 public class BV_Chat : Photon.MonoBehaviour
