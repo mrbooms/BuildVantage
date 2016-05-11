@@ -62,6 +62,19 @@ public class BV_RoomMenu : MonoBehaviour
 			print ("TEST / JOINED ?");
 			GameObject.Find ("GameScripts").GetComponent<BV_RoomMenu> ().enabled = false;
 			GameObject.Find ("RoomMenu").SetActive (false);
+			GameObject[] terrains = GameObject.FindGameObjectsWithTag ("TERRAIN");
+			
+			//ADD AND INITIALIZE COLLIDERS FOR LEISURE TERRAINS FOR SALES
+			foreach (GameObject terrain in terrains) 
+			{
+				terrain.AddComponent<BoxCollider>();
+				terrain.GetComponent<BoxCollider>().center = new Vector3(terrain.GetComponent<BoxCollider>().center.x,
+				                                                         3,
+				                                                         terrain.GetComponent<BoxCollider>().center.z);
+				terrain.GetComponent<BoxCollider>().size = new Vector3(terrain.GetComponent<BoxCollider>().size.x,
+				                                                       1,
+				                                                       terrain.GetComponent<BoxCollider>().size.z);
+			}
 		}
 	}
 
@@ -95,6 +108,19 @@ public class BV_RoomMenu : MonoBehaviour
 			print ("TEST / RANDOMED ?");
 			GameObject.Find ("GameScripts").GetComponent<BV_RoomMenu> ().enabled = false;
 			GameObject.Find ("RoomMenu").SetActive (false);
+			GameObject[] terrains = GameObject.FindGameObjectsWithTag ("TERRAIN");
+			
+			//ADD AND INITIALIZE COLLIDERS FOR LEISURE TERRAINS FOR SALES
+			foreach (GameObject terrain in terrains) 
+			{
+				terrain.AddComponent<BoxCollider>();
+				terrain.GetComponent<BoxCollider>().center = new Vector3(terrain.GetComponent<BoxCollider>().center.x,
+				                                                         3,
+				                                                         terrain.GetComponent<BoxCollider>().center.z);
+				terrain.GetComponent<BoxCollider>().size = new Vector3(terrain.GetComponent<BoxCollider>().size.x,
+				                                                       1,
+				                                                       terrain.GetComponent<BoxCollider>().size.z);
+			}
 		}
 	}
 

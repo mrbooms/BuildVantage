@@ -2,93 +2,124 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class BV_GameClicks : MonoBehaviour {
+
+public class BV_GameClicks : MonoBehaviour {/*
 
 	public GameObject window;
-	float x;
+	RaycastHit hitInfo;
+	//float x = 0;
+	private int click = 0;
 
 	void Start()
 	{
-		x = window.GetComponent<RectTransform>().localPosition.x - 300f;
+		//x = window.GetComponent<RectTransform>().localPosition.x - 300f;
 	}
+
 	// Update is called once per frame
 	void Update () 
 	{
 
-		if (Input.GetMouseButtonDown (0)) 
+
+		//&& hitInfo.transform.tag == "TERRAIN") 
+
+		/*
+		print (click);
+
+		hitInfo = new RaycastHit();
+
+		if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hitInfo)
+		    && Input.GetMouseButtonDown (0)
+		    && hitInfo.transform.tag == "TERRAIN") 
 		{
-			RaycastHit hitInfo = new RaycastHit();
+			GameObject[] terrains = GameObject.FindGameObjectsWithTag("TERRAIN");
 
-			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo) && hitInfo.transform.tag == "TERRAIN")
+			foreach(GameObject terrain in terrains)
 			{
-				//THIS PART TAKES CARE OF INSTANTIATING THE BUILDING WINDOW
-				spawnBuildingGUI();
-
-				//THIS INITIALIZE BUILDING GUI VALUES
-				spawnGuiValues(hitInfo);
-
-
+				terrain.GetComponent<BoxCollider>().enabled = false;
 			}
-		}
-	}
 
+			//THIS PART TAKES CARE OF INSTANTIATING THE BUILDING WINDOW
+			spawnBuildingGUI ();
+			
+			//THIS INITIALIZE BUILDING GUI VALUES
+			spawnGuiValues (hitInfo);
+		} 
+	}
+	
 	public void spawnGuiValues(RaycastHit hitInfo)
 	{
-		print ("SELECTED ITEM IS : "+hitInfo.transform.parent.name);
-		print ("CHILD 1 : "+window.transform.Find("GameGuiPannel").name);
-		GameObject child1 = window.transform.Find("GameGuiPannel").gameObject;
-		print ("CHILD 2 : "+child1.name);
-		
-		foreach(Transform child in child1.transform)
+
+		print ("PROCESSING : "+hitInfo.transform.gameObject.name);
+		GameObject children = window.transform.Find ("GameGuiPannel").gameObject;
+
+		foreach(Transform child in children.transform)
 		{
+			print ("######### NEW PROCESS ########");
 			print ("PROCESSING : "+child.name);
+
 			//CHANGE THUMBNAIL DEPENDING OF THE BUILDING TYPE
 			if(child.name == "RawImage")
 			{
 				Texture NewTexture = Resources.Load<Texture>("Thumbnails/" + hitInfo.transform.parent.name + "_t");
-				
 				child.GetComponent<RawImage>().texture = NewTexture;
+				print ("SUCCESSFULLY LOADED TEXTURE : "+hitInfo.transform.parent.name);
 			}
-			//GET THE SCRIPT OF THE SELECTED TERRAIN PARENT (BUILDING)
+
+			//GET SCRIPT FROM SELECTED TERRAIN
 			BV_Buiding buildingScript = hitInfo.transform.parent.GetComponent<BV_Buiding>();
-			
+
 			if(child.name == "StateBtn")
 			{
-				child.transform.Find("StateText").GetComponent<Text>().text = buildingScript.myState+"";
+				print ("STATE = "+buildingScript.myState);
+				Button stateBtn = child.GetComponent<Button>();
+				string s = buildingScript.myState+"";
+				Text newtext = child.transform.Find("StateText").GetComponent<Text>();
+				newtext.text = s;
+				//stateBtn.onClick.AddListener(() => {clickStateBtn();});
 			}
 			if(child.name == "PopValue")
 			{
 				float value = buildingScript.getPopularity();
 				string s = buildingScript.getPopularity()+"";
-				child.GetComponent<Text>().text = s;
+				print ("POPULARITY = "+s);
+				Text newtext = child.GetComponent<Text>();
+				newtext.text = s;
 				child.GetComponent<Text>().color = fontColorChanger(value);
 			}
 			if(child.name == "InfValue")
 			{
 				float value = buildingScript.getInfluence();
 				string s = buildingScript.getInfluence()+"";
-				child.GetComponent<Text>().text = s;
+				print ("INFLUENCE = "+s);
+				Text newtext = child.GetComponent<Text>();
+				newtext.text = s;
 				child.GetComponent<Text>().color = fontColorChanger(value);
 			}
 			if(child.name == "IncValue")
 			{
 				float value = buildingScript.getIncome();
 				string s = buildingScript.getIncome()+"";
-				child.GetComponent<Text>().text = s;
+				print ("INCOME = "+s);
+				Text newtext = child.GetComponent<Text>();
+				newtext.text = s;
 				child.GetComponent<Text>().color = fontColorChanger(value);
 			}
 			if(child.name == "ExpValue")
 			{
 				float value = buildingScript.getExpenses();
 				string s = buildingScript.getExpenses()+"";
-				child.GetComponent<Text>().text = s;
+				print ("EXPENSES = "+s);
+				Text newtext = child.GetComponent<Text>();
+				newtext.text = s;
 				child.GetComponent<Text>().color = fontColorChanger(value);
 			}
 			if(child.name == "TotValue")
 			{
 				float value = buildingScript.getTotal();
 				string s = buildingScript.getTotal()+"";
-				child.GetComponent<Text>().text = s;
+				print ("TOTAL = "+s);
+				Text newtext = child.GetComponent<Text>();
+				newtext.text = s;
 				child.GetComponent<Text>().color = fontColorChanger(value);
 			}
 			if(child.name == "Toggle")
@@ -96,20 +127,9 @@ public class BV_GameClicks : MonoBehaviour {
 				child.GetComponent<Toggle>().isOn = buildingScript.getPayTaxes();
 			}
 		}
-		
-
 	}
+	
 
-	public Color fontColorChanger(float value)
-	{
-		Color result = Color.yellow;
-
-		if (value < 0) {result = Color.red;}
-		else if (value == 0) {result = Color.yellow;}
-		else if (value > 0) {result = Color.green;}
-
-		return result;
-	}
 
 	void spawnBuildingGUI()
 	{
@@ -117,10 +137,18 @@ public class BV_GameClicks : MonoBehaviour {
 		{
 			Instantiate(window);
 			
-			window.transform.Find("GameGuiPannel").GetComponent<RectTransform>().localPosition = new Vector3 (x,
+			window.transform.Find("GameGuiPannel").GetComponent<RectTransform>().localPosition = new Vector3 (0f,
 			                                                                                                  121f,
 			                                                                                                  0f);
-			x = x + 200;
+			//x = x + 200;
 		}
 	}
+
+	public void StateBtn()
+	{
+		print ("CLICK STATE BTN");
+		click = 111;
+	}
+
+*/
 }
