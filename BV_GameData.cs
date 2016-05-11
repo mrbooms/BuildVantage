@@ -1,17 +1,42 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using Photon;
 
-public class BV_GameData : Photon.MonoBehaviour 
+public class BV_GameData : MonoBehaviour 
 {
+	public GameObject currentOpenWindow;
+	//[SerializeField] private GameObject windowChild;
+	[SerializeField] private GameObject selectedObject;
+	[SerializeField] private GameObject parentObject;
 
+	//SETTERS
+	public void setSelectedObject(GameObject selectedObject)
+	{
+		this.selectedObject = selectedObject;
+	}
+	
+	public void setParentObject(GameObject parentObject)
+	{
+		this.parentObject = parentObject;
+	}
+
+	//GETTERS
+	public GameObject getSelectedObject()
+	{
+		return selectedObject;
+	}
+	
+	public GameObject getParentObject()
+	{
+		return parentObject;
+	}
+
+	/*
 	Camera myCam;
 	//Input myInput;
 	public GameObject currentOpenWindow;
-	[SerializeField] private GameObject windowChild;
-	[SerializeField] private GameObject selectedObject;
-	[SerializeField] private GameObject parentObject;
+
+
 	[SerializeField] private Ray ray;
 	[SerializeField] private RaycastHit hit;
 	[SerializeField] private bool hasClicked;
@@ -32,7 +57,7 @@ public class BV_GameData : Photon.MonoBehaviour
 	void Start()
 	{
 		selectedObject = null;
-		hit = new RaycastHit ();
+		//hit = new RaycastHit ();
 
 		//INSTANTIATE WINDOW
 		if(GameObject.FindGameObjectsWithTag("BUILDINGUI").Length <= 3)
@@ -54,7 +79,8 @@ public class BV_GameData : Photon.MonoBehaviour
 
 			if(Physics.Raycast (ray, out hit))
 			{
-				print ("RAYCAST = "+hit.transform.gameObject.name);
+				//print ("RAYCAST = "+hit.transform.gameObject.name);
+				
 				if(hit.transform.tag == "TERRAIN" || hit.transform.tag == "LEISURE")
 				{
 					setSelectedObject(hit.transform.gameObject);
@@ -85,13 +111,7 @@ public class BV_GameData : Photon.MonoBehaviour
 
 		if (hasClicked == true) 
 		{
-			/*
-			print ("ON CLICK ===========");
-			print("currentOpenWindow = "+currentOpenWindow.name);
-			print("selectedObject = "+selectedObject.name);
-			print("parentObject = "+parentObject.name);
-			print("hit = "+hit.point);
-			print("hasClicked = "+hasClicked);*/
+
 			
 			hasClicked = false;
 			//print ("HIT ="+hit.point);
@@ -253,44 +273,14 @@ public class BV_GameData : Photon.MonoBehaviour
 		hasClicked = b;
 	}
 
-	public void setSelectedObject(GameObject b)
-	{
-		selectedObject = b;
-	}
 
-	public void setParentObject(GameObject b)
-	{
-		parentObject = b;
-	}
 
 	public void setWindowChild(GameObject b)
 	{
 		windowChild = b;
 	}
 
-	public void swapCollider(string tag, bool value)
-	{
-		GameObject[] assets = GameObject.FindGameObjectsWithTag (tag);
 
-		foreach (GameObject asset in assets) 
-		{
-			if(tag == "TERRAIN")
-			{
-				//print ("SELECTED OBJECT PARENT = "+parentObject.name);
-				if(asset != parentObject)
-				{
-					asset.GetComponent<BoxCollider> ().enabled = value;
-				}
-			}
-			else
-			{
-				asset.GetComponent<BoxCollider> ().enabled = value;
-			}
-
-
-		}
-		
-	}
 
 	public Color fontColorChanger(float value)
 	{
@@ -316,5 +306,5 @@ public class BV_GameData : Photon.MonoBehaviour
 	public GameObject getWindowChild()
 	{
 		return windowChild;
-	}
+	}*/
 }

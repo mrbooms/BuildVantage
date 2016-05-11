@@ -18,11 +18,11 @@ public class BV_closeBtn : MonoBehaviour {
 	{
 		BV_GameData myGameData = GameObject.Find ("GameScripts").GetComponent<BV_GameData> ();
 		//THIS IS FOR TESTING
-		myGameData.swapCollider("TERRAIN", true);
-		myGameData.swapCollider("LEISURE", true);
-		myGameData.getWindowChild().SetActive(false);
+//		myGameData.swapCollider("TERRAIN", true);
+//		myGameData.swapCollider("LEISURE", true);
+//		myGameData.getWindowChild().SetActive(false);
 		//
-		myGameData.myContext = BV_GameData.context.closing;
+//		myGameData.myContext = BV_GameData.context.closing;
 		//myGameData.setHasClicked (true);
 	}
 }
