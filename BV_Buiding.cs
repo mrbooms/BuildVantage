@@ -4,6 +4,8 @@ using Photon;
 
 public class BV_Buiding : Photon.MonoBehaviour 
 {
+	public bool allowToMove;
+
 	//PARTICLES
 	public GameObject particles;
 
@@ -53,6 +55,7 @@ public class BV_Buiding : Photon.MonoBehaviour
 
 	void Start()
 	{
+		allowToMove = false;
 		myOwner = ownerEnum.game;
 		lastState = myState + "";
 		payTaxes = true;
@@ -99,6 +102,18 @@ public class BV_Buiding : Photon.MonoBehaviour
 
 	void Update()
 	{
+		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		RaycastHit hit = new RaycastHit ();
+		
+		if (Physics.Raycast (ray, out hit)) 
+		{
+			if(hit.transform.gameObject.tag == "MAP" && allowToMove == true)
+			{
+				print (hit.transform.gameObject.tag+" is hit at "+hit.point);
+				transform.position = hit.point;
+			}
+		}
+
 		if (lastState != myState + "") 
 		{
 			//print ("####### STATE CHANGED but not CHANGED !");
@@ -179,12 +194,16 @@ public class BV_Buiding : Photon.MonoBehaviour
 		if (i == 3) 
 		{
 			myState = stateEnum.Renovate;
+			instantiateParticles(childTerrain.transform.position);
 		}
 	}
 
 	public void setOwner(int i)
 	{
 		gameObject.GetComponent<Renderer> ().material.EnableKeyword("_EMISSION");
+		BV_Terrain terrainScript = childTerrain.GetComponent<BV_Terrain>();
+		terrainScript.changeColor(i);
+		terrainScript.sendRPC(i);
 		
 		if (i == 1) 
 		{
@@ -252,4 +271,5 @@ public class BV_Buiding : Photon.MonoBehaviour
 		Debug.Log ("TEST");
 		setState (i);
 	}
+
 }

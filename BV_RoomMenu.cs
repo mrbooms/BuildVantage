@@ -5,7 +5,13 @@ using System.Collections;
 
 public class BV_RoomMenu : MonoBehaviour
 {
-	
+
+	void OnJoinedRoom()
+	{
+		//GameObject.Find ("prefab_moba_camera").SetActive (false);
+		//PhotonNetwork.Instantiate ("prefab_moba_camera", Vector3.zero, Quaternion.identity, 0);
+	}
+
 	void Awake()
 	{
 		//PhotonNetwork.logLevel = NetworkLogLevel.Full;
