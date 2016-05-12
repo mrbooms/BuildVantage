@@ -21,6 +21,11 @@ public class BV_Buiding : Photon.MonoBehaviour
 
 	string lastState;
 
+	public void setName(string name)
+	{
+		this.name = name;
+	}
+
 	//THIS INDICATE THE STATE OF THE BUILDING
 	public enum stateEnum
 	{
@@ -55,7 +60,6 @@ public class BV_Buiding : Photon.MonoBehaviour
 
 	void Start()
 	{
-		allowToMove = false;
 		myOwner = ownerEnum.game;
 		lastState = myState + "";
 		payTaxes = true;
@@ -104,13 +108,33 @@ public class BV_Buiding : Photon.MonoBehaviour
 	{
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit = new RaycastHit ();
-		
+
+
+
 		if (Physics.Raycast (ray, out hit)) 
 		{
 			if(hit.transform.gameObject.tag == "MAP" && allowToMove == true)
 			{
-				print (hit.transform.gameObject.tag+" is hit at "+hit.point);
+				//print (hit.transform.gameObject.tag+" is hit at "+hit.point);
 				transform.position = hit.point;
+
+				if (Input.GetMouseButtonDown(1)) 
+				{
+					allowToMove = false;
+				}
+
+				//HANDLES BUILDING ROTATION
+				if (Input.GetKey ("q")) {
+					transform.rotation = new Quaternion (transform.rotation.x,
+					                                     transform.rotation.y + 0.01f,
+					                                     transform.rotation.z,
+					                                     transform.rotation.w);
+				} else if (Input.GetKey ("e")) {
+					transform.rotation = new Quaternion (transform.rotation.x,
+					                                     transform.rotation.y - 0.01f,
+					                                     transform.rotation.z,
+					                                     transform.rotation.w);
+				}
 			}
 		}
 

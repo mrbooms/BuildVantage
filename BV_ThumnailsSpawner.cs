@@ -8,9 +8,6 @@ public class BV_ThumnailsSpawner : MonoBehaviour
 	Button button;
 	[SerializeField] private GameObject building;
 	bool spawned = false;
-	Vector3 MouseCoords;
-	float MoveSpeed;
-	BV_Buiding buildingScript;
 
 	//SETTERS
 	public void setBuilding(GameObject building)
@@ -21,12 +18,8 @@ public class BV_ThumnailsSpawner : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		MoveSpeed = 3f;
-		//setBuilding (Resources.Load ("Prefabs/Buildings/" + name)as GameObject);
-		buildingScript = building.GetComponent<BV_Buiding> ();
-
-		GetComponent<Image> ().overrideSprite = Resources.Load<Sprite> ("Thumbnails/" + building.name + "_t");
-
+		//ADD PICTURE
+		GetComponent<Image> ().overrideSprite = Resources.Load<Sprite> ("Thumbnails/" + name + "_t");
 		//ADD LISTENER TO THE STATE BUTTON
 		button = gameObject.GetComponent<Button> ();
 		button.onClick.AddListener (() => {
@@ -35,19 +28,11 @@ public class BV_ThumnailsSpawner : MonoBehaviour
 
 	public void clickThumbnail()
 	{
-		print ("HAS CLICKED");
-		Instantiate (building);
-		building.name = gameObject.name;
-		buildingScript.allowToMove = true;
-	}
-
-
-
-	void Update()
-	{
-		if (buildingScript.allowToMove == true)
-		{
-			print ("MOVING");
-		}
+		building = Resources.Load ("Prefabs/Buildings/" + name) as GameObject;
+		GameObject newBuilding = (GameObject)Instantiate (building, Vector3.zero, Quaternion.identity);
+		newBuilding.name = name;
+		BV_Buiding newBuildingScript = newBuilding.GetComponent<BV_Buiding> ();
+		newBuildingScript.allowToMove = true;
+		building = newBuilding;
 	}
 }
