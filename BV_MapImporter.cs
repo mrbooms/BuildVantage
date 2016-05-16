@@ -127,7 +127,7 @@ public class BV_MapImporter : MonoBehaviour {
 				GameObject building = Resources.Load ("Prefabs/Buildings/" + buildingName) as GameObject;
 				GameObject newBuilding = (GameObject)Instantiate (building, position, rotation);
 				newBuilding.name = buildingName;
-				BV_Buiding newBuildingScript = newBuilding.GetComponent<BV_Buiding> ();
+				BV_BuildingManager newBuildingScript = newBuilding.GetComponent<BV_BuildingManager> ();
 				newBuildingScript.allowToMove = false;
 				building = newBuilding;
 			}

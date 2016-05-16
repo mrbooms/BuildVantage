@@ -11,7 +11,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 	void Start()
 	{
 		//GETS THE NAME OF THE PREFAB AND THEN THE BUILDING BEHAVIOUR SCRIPT
-		BV_Buiding myScript = gameObject.GetComponent<BV_Buiding> ();
+		BV_BuildingManager myScript = gameObject.GetComponent<BV_BuildingManager> ();
 
 		//INITIALIZE LAST OWNER
 		lastOwner = myScript.myOwner + "";
@@ -34,43 +34,44 @@ public class BV_BuildingShaderer : MonoBehaviour {
 	void Update()
 	{
 		//CREATE THE SCRIPT INSTANCE TO RETRIEVE ITS VALUES
-		BV_Buiding myScript = gameObject.GetComponent<BV_Buiding> ();
+		BV_BuildingManager myScript = gameObject.GetComponent<BV_BuildingManager> ();
 
 		//ALOOW US TO MODIFY THE EMISSION PART OF THE SHADER
 		gameObject.GetComponent<Renderer> ().material.EnableKeyword("_EMISSION");
 
-		if (lastOwner != myScript.myOwner + "" && myScript.myType == BV_Buiding.typeEnum.leisure) 
+		if (lastOwner != myScript.myOwner + "" && myScript.myType == BV_BuildingManager.typeEnum.leisure) 
 		{
 			print ("####### COLOR CHANGED !");
-			updateColor(myScript);
+			//updateColor(myScript);
 			lastOwner = myScript.myOwner + "";
 		}
 	}
 
-	void updateColor(BV_Buiding myScript)
+
+	void updateColor(BV_BuildingManager myScript)
 	{
 		//CHANGE TO THE CORRECT COLOR DEPENDING OF THE GAME OWNER
-		if (myScript.myOwner == BV_Buiding.ownerEnum.game ) 
+		if (myScript.myOwner == BV_BuildingManager.ownerEnum.game ) 
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.clear);
 		}
-		else if (myScript.myOwner == BV_Buiding.ownerEnum.playerBlue)
+		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerBlue)
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.blue);
 		}
-		else if (myScript.myOwner == BV_Buiding.ownerEnum.playerGreen )
+		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerGreen )
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.green);
 		}
-		else if (myScript.myOwner == BV_Buiding.ownerEnum.playerOrange)
+		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerOrange)
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.magenta);
 		}
-		else if (myScript.myOwner == BV_Buiding.ownerEnum.playerRed)
+		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerRed)
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.red);
 		}
-		else if (myScript.myOwner == BV_Buiding.ownerEnum.playerYellow) 
+		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerYellow) 
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.yellow);
 		}

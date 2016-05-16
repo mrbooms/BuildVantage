@@ -31,7 +31,7 @@ public class BV_ThumnailsSpawner : MonoBehaviour
 		building = Resources.Load ("Prefabs/Buildings/" + name) as GameObject;
 		GameObject newBuilding = (GameObject)Instantiate (building, Vector3.zero, Quaternion.identity);
 		newBuilding.name = name;
-		BV_Buiding newBuildingScript = newBuilding.GetComponent<BV_Buiding> ();
+		BV_BuildingManager newBuildingScript = newBuilding.GetComponent<BV_BuildingManager> ();
 		newBuildingScript.allowToMove = true;
 		building = newBuilding;
 	}
