@@ -4,26 +4,62 @@ using Photon;
 
 public class BV_Buiding : Photon.MonoBehaviour 
 {
+	[SerializeField] private int ownerID;
+
 	public bool allowToMove;
 
 	//PARTICLES
 	public GameObject particles;
 
 	//THIS ARE THE FIELD FOR THE BUILDING DATA
-	private bool payTaxes;
-	private float popularity;
-	private float influence;
-	private float income;
-	private float expenses;
-	private float total;
-	private Vector3 animPosition;
-	private GameObject childTerrain;
+	[SerializeField] private float price;
+	[SerializeField] private bool payTaxes;
+	[SerializeField] private float taxes;
+	[SerializeField] private float popularity;
+	[SerializeField] private float influence;
+	[SerializeField] private float income;
+	[SerializeField] private float expenses;
+	[SerializeField] private float total;
+	[SerializeField] private Vector3 animPosition;
+	[SerializeField] private GameObject childTerrain;
+	public float distance;
+	public float age;
 
 	string lastState;
 
 	public void setName(string name)
 	{
 		this.name = name;
+	}
+
+	public int getID()
+	{
+		if(myOwner == ownerEnum.playerBlue)
+		{
+			ownerID = 1;
+		}
+		else if(myOwner == ownerEnum.playerGreen)
+		{
+			ownerID = 2;
+		}
+		else if(myOwner == ownerEnum.playerOrange)
+		{
+			ownerID = 3;
+		}
+		else if(myOwner == ownerEnum.playerRed)
+		{
+			ownerID = 4;
+		}
+		else if(myOwner == ownerEnum.playerYellow)
+		{
+			ownerID = 5;
+		}
+		else if(myOwner == ownerEnum.game)
+		{
+			myOwner = ownerEnum.game;
+			ownerID = 0;
+		}
+		return ownerID;
 	}
 
 	//THIS INDICATE THE STATE OF THE BUILDING
@@ -58,23 +94,75 @@ public class BV_Buiding : Photon.MonoBehaviour
 	}
 	public typeEnum myType;
 
+	public void setValues ()
+	{
+		distance = Vector3.Distance (transform.position, Vector3.zero);
+		price = 10000 - distance;
+
+
+		//SET POPULARITY
+		if (payTaxes == true) 
+		{
+			popularity = popularity + 10f;
+		}
+		else if (payTaxes == false) 
+		{
+			popularity = popularity - 10f;
+		}
+		//SET INFLUENCE
+		if (distance <= 1000) 
+		{
+			influence = 1000;
+		}
+		else if (distance <= 2000 && distance > 1000) 
+		{
+			influence = 500;
+		}
+		else if (distance <= 3000 && distance > 2000) 
+		{
+			influence = 100;
+		}
+		else if (distance > 3000) 
+		{
+			influence = 0;
+		}
+		income = (price/12)+influence+popularity;
+		expenses = 30 + age;
+
+		//SET Taxes
+		if (payTaxes == true) 
+		{
+			float netto = income - ((income / 100) * 25);
+			taxes = income - netto;
+		}
+		else if (payTaxes == false) 
+		{
+			taxes = 0;
+		}
+		total = income - expenses - taxes + influence;
+
+		if (myState != stateEnum.Renovate) 
+		{
+			income = 0;
+			expenses = 0;
+			total = 0;
+		}
+	}
+
 	void Start()
 	{
+		distance = 0f;
+		ownerID = 0;
 		myOwner = ownerEnum.game;
 		lastState = myState + "";
 		payTaxes = true;
-		popularity = 10000;
-		influence = 0;
-		income = -70990;
-		expenses = 79900;
-		total = 5;
-
+		setValues ();
 		if (myType == typeEnum.leisure) 
 		{
 			childTerrain = transform.Find("BV_Mesh_terrain").gameObject;
-			animPosition = new Vector3(childTerrain.transform.position.x,
-			                           childTerrain.transform.position.y+31f,
-			                           childTerrain.transform.position.z);
+			animPosition = new Vector3(transform.position.x,
+			                           0f,
+			                           transform.position.z);
 		}
 	}
 
@@ -82,6 +170,10 @@ public class BV_Buiding : Photon.MonoBehaviour
 	public bool getPayTaxes()
 	{
 		return payTaxes;
+	}
+	public float getTaxes()
+	{
+		return taxes;
 	}
 	public float getPopularity()
 	{
@@ -106,10 +198,24 @@ public class BV_Buiding : Photon.MonoBehaviour
 
 	void Update()
 	{
+		if (myState == stateEnum.Renovate) 
+		{
+			age++;
+		}
+
+
+		if (age == 500 && myType == typeEnum.leisure && myState == stateEnum.Renovate) {
+			myOwner = ownerEnum.game;
+			gameObject.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+			gameObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", Color.white);
+			if (gameObject.GetComponent<BoxCollider> ()) {
+				gameObject.GetComponent<BoxCollider> ().enabled = false;
+			}
+			instantiateParticles (transform.position);
+		} 
+
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit = new RaycastHit ();
-
-
 
 		if (Physics.Raycast (ray, out hit)) 
 		{
@@ -140,11 +246,14 @@ public class BV_Buiding : Photon.MonoBehaviour
 
 		if (lastState != myState + "") 
 		{
-			//print ("####### STATE CHANGED but not CHANGED !");
+			//updateOwner (PhotonNetwork.player.ID);
+			updateState ();
 			lastState = myState + "";
+			setValues ();
 		}
-		updateOwner ();
 		updateState ();
+		lastState = myState + "";
+		setValues ();
 	}
 
 	public void updateState()
@@ -171,36 +280,36 @@ public class BV_Buiding : Photon.MonoBehaviour
 	{
 		Instantiate (particles, pos,Quaternion.identity);
 	}
-	public void updateOwner()
+	public void updateOwner(int i)
 	{
-		if(PhotonNetwork.player.ID == 1)
+		if(i == 1)
 		{
 			myOwner = ownerEnum.playerBlue;
 			return;
 		}
-		else if(PhotonNetwork.player.ID == 2)
+		else if(i == 2)
 		{
 			myOwner = ownerEnum.playerGreen;
 			return;
 		}
-		else if(PhotonNetwork.player.ID == 3)
+		else if(i == 3)
 		{
 			myOwner = ownerEnum.playerOrange;
 			return;
 		}
-		else if(PhotonNetwork.player.ID == 4)
+		else if(i == 4)
 		{
 			myOwner = ownerEnum.playerRed;
 			return;
 		}
-		else if(PhotonNetwork.player.ID == 5)
+		else if(i == 5)
 		{
-			myOwner = ownerEnum.playerYellow;
 			return;
 		}
 		else
 		{
 			myOwner = ownerEnum.game;
+			ownerID = 0;
 			return;
 		}
 	}

@@ -34,7 +34,7 @@ public class BV_Terrain : Photon.MonoBehaviour
 		}
 		else
 		{
-			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.clear);
+			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.white);
 		}
 	}
 

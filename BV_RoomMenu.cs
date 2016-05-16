@@ -5,6 +5,11 @@ using System.Collections;
 
 public class BV_RoomMenu : MonoBehaviour
 {
+	private GameObject mainMenu;
+	private BV_MainMenuScript menuScript;
+	private string roomName = "myRoom";
+	private Vector2 scrollPos = Vector2.zero;
+	private string oldPlayerName;
 
 	void OnJoinedRoom()
 	{
@@ -25,10 +30,11 @@ public class BV_RoomMenu : MonoBehaviour
 		
 	}
 	
-	private string roomName = "myRoom";
-	private Vector2 scrollPos = Vector2.zero;
-
-	private string oldPlayerName;
+	void Start()
+	{
+		mainMenu = GameObject.Find ("AndroidCanvas");
+		menuScript = GameObject.Find ("GameScripts").GetComponent<BV_MainMenuScript> ();
+	}
 
 	void Update()
 	{
@@ -59,6 +65,12 @@ public class BV_RoomMenu : MonoBehaviour
 		}
 	}
 
+	public void closeMainMenu()
+	{
+		menuScript.enabled = false;
+		mainMenu.SetActive(false);
+	}
+
 	public void joinRoom()
 	{
 		if (PhotonNetwork.GetRoomList ().Length != 0) 
@@ -68,65 +80,52 @@ public class BV_RoomMenu : MonoBehaviour
 			print ("TEST / JOINED ?");
 			GameObject.Find ("GameScripts").GetComponent<BV_RoomMenu> ().enabled = false;
 			GameObject.Find ("RoomMenu").SetActive (false);
-			GameObject[] terrains = GameObject.FindGameObjectsWithTag ("TERRAIN");
-			
-			//ADD AND INITIALIZE COLLIDERS FOR LEISURE TERRAINS FOR SALES
-			foreach (GameObject terrain in terrains) 
-			{
-				terrain.AddComponent<BoxCollider>();
-				terrain.GetComponent<BoxCollider>().center = new Vector3(terrain.GetComponent<BoxCollider>().center.x,
-				                                                         3,
-				                                                         terrain.GetComponent<BoxCollider>().center.z);
-				terrain.GetComponent<BoxCollider>().size = new Vector3(terrain.GetComponent<BoxCollider>().size.x,
-				                                                       1,
-				                                                       terrain.GetComponent<BoxCollider>().size.z);
-			}
+			//GameObject[] buildings = GameObject.FindGameObjectsWithTag ("BUILDING");
+			closeMainMenu();
+			addColliders();
 		}
 	}
 
 	public void createRoom()
 	{
+		closeMainMenu ();
 		roomName = GameObject.Find ("Field_CreateRoom").GetComponent<InputField>().text;
 		PhotonNetwork.CreateRoom(roomName, new RoomOptions() { maxPlayers = 5 }, TypedLobby.Default);
 		print ("TEST / CREATED ?");
 		GameObject.Find ("GameScripts").GetComponent<BV_RoomMenu> ().enabled = false;
 		GameObject.Find ("RoomMenu").SetActive (false);
-		GameObject[] terrains = GameObject.FindGameObjectsWithTag ("TERRAIN");
-
-		//ADD AND INITIALIZE COLLIDERS FOR LEISURE TERRAINS FOR SALES
-		foreach (GameObject terrain in terrains) 
-		{
-			terrain.AddComponent<BoxCollider>();
-			terrain.GetComponent<BoxCollider>().center = new Vector3(terrain.GetComponent<BoxCollider>().center.x,
-			                                                         3,
-			                                                         terrain.GetComponent<BoxCollider>().center.z);
-			terrain.GetComponent<BoxCollider>().size = new Vector3(terrain.GetComponent<BoxCollider>().size.x,
-			                                                         1,
-			                                                         terrain.GetComponent<BoxCollider>().size.z);
-		}
+		//GameObject[] buildings = GameObject.FindGameObjectsWithTag ("BUILDING");
+		addColliders ();
 	}
 
 	public void joinRandom()
 	{
 		if (PhotonNetwork.GetRoomList ().Length != 0) 
 		{
+			closeMainMenu();
 			PhotonNetwork.JoinRandomRoom();
 			print ("TEST / RANDOMED ?");
 			GameObject.Find ("GameScripts").GetComponent<BV_RoomMenu> ().enabled = false;
 			GameObject.Find ("RoomMenu").SetActive (false);
-			GameObject[] terrains = GameObject.FindGameObjectsWithTag ("TERRAIN");
-			
-			//ADD AND INITIALIZE COLLIDERS FOR LEISURE TERRAINS FOR SALES
-			foreach (GameObject terrain in terrains) 
-			{
-				terrain.AddComponent<BoxCollider>();
-				terrain.GetComponent<BoxCollider>().center = new Vector3(terrain.GetComponent<BoxCollider>().center.x,
-				                                                         3,
-				                                                         terrain.GetComponent<BoxCollider>().center.z);
-				terrain.GetComponent<BoxCollider>().size = new Vector3(terrain.GetComponent<BoxCollider>().size.x,
-				                                                       1,
-				                                                       terrain.GetComponent<BoxCollider>().size.z);
-			}
+			addColliders();
+
+		}
+	}
+
+	public void addColliders()
+	{
+		GameObject[] buildings = GameObject.FindGameObjectsWithTag ("TERRAIN");
+		
+		//ADD AND INITIALIZE COLLIDERS FOR LEISURE TERRAINS FOR SALES
+		foreach (GameObject terrain in buildings) 
+		{
+			terrain.AddComponent<BoxCollider>();
+			terrain.GetComponent<BoxCollider>().center = new Vector3(terrain.GetComponent<BoxCollider>().center.x,
+			                                                         3,
+			                                                         terrain.GetComponent<BoxCollider>().center.z);
+			terrain.GetComponent<BoxCollider>().size = new Vector3(terrain.GetComponent<BoxCollider>().size.x,
+			                                                       1,
+			                                                       terrain.GetComponent<BoxCollider>().size.z);
 		}
 	}
 
