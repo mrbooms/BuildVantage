@@ -58,7 +58,7 @@ public class BV_MapImporter : MonoBehaviour {
 		{
 			string[] values = item.Split ('/');
 
-			print ("VALUES #######");
+			//print ("VALUES #######");
 			int i = 0;
 
 			foreach(string value in values)
@@ -72,49 +72,49 @@ public class BV_MapImporter : MonoBehaviour {
 				case 1 :
 					//NAME
 					buildingName = value;
-					print ("SUCCEED LOAD NAME :"+buildingName);
+					//print ("SUCCEED LOAD NAME :"+buildingName);
 					i++;
 					break;
 				case 2 :
 					buildingPosX = float.Parse(value);
-					print ("SUCCEED LOAD POSX :"+buildingPosX);
+					//print ("SUCCEED LOAD POSX :"+buildingPosX);
 					//posX
 					i++;
 					break;
 				case 3 :
 					//posY
 					buildingPosY = float.Parse(value);
-					print ("SUCCEED LOAD POSY :"+buildingPosY);
+					//print ("SUCCEED LOAD POSY :"+buildingPosY);
 					i++;
 					break;
 				case 4 :
 					//posZ
 					buildingPosZ = float.Parse(value);
-					print ("SUCCEED LOAD POSZ :"+buildingPosZ);
+					//print ("SUCCEED LOAD POSZ :"+buildingPosZ);
 					i++;
 					break;
 				case 5 :
 					//rotX
 					buildingRotX = float.Parse(value);
-					print ("SUCCEED LOAD RotX :"+buildingRotX);
+					//print ("SUCCEED LOAD RotX :"+buildingRotX);
 					i++;
 					break;
 				case 6 :
 					//rotY
 					buildingRotY = float.Parse(value);
-					print ("SUCCEED LOAD RotY :"+buildingRotY);
+					//print ("SUCCEED LOAD RotY :"+buildingRotY);
 					i++;
 					break;
 				case 7 :
 					//rotZ
 					buildingRotZ = float.Parse(value);
-					print ("SUCCEED LOAD RotZ :"+buildingRotZ);
+					//print ("SUCCEED LOAD RotZ :"+buildingRotZ);
 					i++;
 					break;
 				case 8 :
 					//rotW
 					buildingRotW = float.Parse(value);
-					print ("SUCCEED LOAD RotW :"+buildingRotW);
+					//print ("SUCCEED LOAD RotW :"+buildingRotW);
 					i++;
 					break;
 				}
@@ -133,11 +133,11 @@ public class BV_MapImporter : MonoBehaviour {
 			}
 			else
 			{
-				print ("ERROR###############DIDNt FIND BUILDING PREFAB FOR "+buildingName);
+				//print ("ERROR###############DIDNt FIND BUILDING PREFAB FOR "+buildingName);
 			}
 		}
 
 		DBsize = answer.Length-1;
-		print ("DB SIZE = " + DBsize);
+		//print ("DB SIZE = " + DBsize);
 	}
 }

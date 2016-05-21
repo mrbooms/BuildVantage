@@ -8,13 +8,15 @@ public class BV_BuildingShaderer : MonoBehaviour {
 	//FOR CHECKING IF OWNER HAS CHaNgeD
 	string lastOwner;
 
+	private BV_BuildingManager myBuilding;
+
 	void Start()
 	{
 		//GETS THE NAME OF THE PREFAB AND THEN THE BUILDING BEHAVIOUR SCRIPT
-		BV_BuildingManager myScript = gameObject.GetComponent<BV_BuildingManager> ();
+		myBuilding = gameObject.GetComponent<BV_BuildingManager> ();
 
 		//INITIALIZE LAST OWNER
-		lastOwner = myScript.myOwner + "";
+		lastOwner = myBuilding.myOwner + "";
 
 		//CREATE A MATERIAL AND A SHADER
 		myMaterial = new Material(Shader.Find("Standard (Specular setup)"));
@@ -34,44 +36,44 @@ public class BV_BuildingShaderer : MonoBehaviour {
 	void Update()
 	{
 		//CREATE THE SCRIPT INSTANCE TO RETRIEVE ITS VALUES
-		BV_BuildingManager myScript = gameObject.GetComponent<BV_BuildingManager> ();
+		myBuilding = gameObject.GetComponent<BV_BuildingManager> ();
 
 		//ALOOW US TO MODIFY THE EMISSION PART OF THE SHADER
 		gameObject.GetComponent<Renderer> ().material.EnableKeyword("_EMISSION");
 
-		if (lastOwner != myScript.myOwner + "" && myScript.myType == BV_BuildingManager.typeEnum.leisure) 
+		if (lastOwner != myBuilding.myOwner + "" && myBuilding.myType == BV_BuildingManager.typeEnum.leisure) 
 		{
-			print ("####### COLOR CHANGED !");
+			//print ("####### COLOR CHANGED !");
 			//updateColor(myScript);
-			lastOwner = myScript.myOwner + "";
+			lastOwner = myBuilding.myOwner + "";
 		}
 	}
 
 
-	void updateColor(BV_BuildingManager myScript)
+	public void updateColor()
 	{
 		//CHANGE TO THE CORRECT COLOR DEPENDING OF THE GAME OWNER
-		if (myScript.myOwner == BV_BuildingManager.ownerEnum.game ) 
+		if (myBuilding.myOwner == BV_BuildingManager.ownerEnum.game ) 
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.clear);
 		}
-		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerBlue)
+		else if (myBuilding.myOwner == BV_BuildingManager.ownerEnum.playerBlue)
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.blue);
 		}
-		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerGreen )
+		else if (myBuilding.myOwner == BV_BuildingManager.ownerEnum.playerGreen )
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.green);
 		}
-		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerOrange)
+		else if (myBuilding.myOwner == BV_BuildingManager.ownerEnum.playerOrange)
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.magenta);
 		}
-		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerRed)
+		else if (myBuilding.myOwner == BV_BuildingManager.ownerEnum.playerRed)
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.red);
 		}
-		else if (myScript.myOwner == BV_BuildingManager.ownerEnum.playerYellow) 
+		else if (myBuilding.myOwner == BV_BuildingManager.ownerEnum.playerYellow) 
 		{
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", Color.yellow);
 		}
@@ -86,7 +88,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_d") as Texture != true)
 		{
-			print ("CANNOT FIND ALBEDO MAP FOR "+name);
+			//print ("CANNOT FIND ALBEDO MAP FOR "+name);
 		}
 		if (Resources.Load ("Import/Textures/" + name + "_s") as Texture) 
 		{
@@ -96,7 +98,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_s") as Texture != true)
 		{
-			print ("CANNOT FIND SPECULAR MAP");
+			//print ("CANNOT FIND SPECULAR MAP");
 		}
 		if (Resources.Load ("Import/Textures/" + name + "_n") as Texture) 
 		{
@@ -107,7 +109,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_n") as Texture != true)
 		{
-			print ("CANNOT FIND NORMAL MAP");
+			//print ("CANNOT FIND NORMAL MAP");
 		}
 		if (Resources.Load ("Import/Textures/" + name + "_c") as Texture) 
 		{
@@ -119,7 +121,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_c") as Texture != true)
 		{
-			print ("CANNOT FIND EMISSION (COLOR) MAP");
+			//print ("CANNOT FIND EMISSION (COLOR) MAP");
 			gameObject.GetComponent<Renderer> ().material.EnableKeyword("_EMISSION");
 			Color transparent = new Color(0.010f,0.001f,0.001f,0.001f);
 			gameObject.GetComponent<Renderer> ().material.SetColor("_EmissionColor", transparent);
@@ -135,7 +137,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_d") as Texture != true)
 		{
-			print ("CANNOT FIND ALBEDO MAP");
+			//print ("CANNOT FIND ALBEDO MAP");
 		}
 		if (Resources.Load ("Import/Textures/" + name + "_s") as Texture) 
 		{
@@ -145,7 +147,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_s") as Texture != true)
 		{
-			print ("CANNOT FIND SPECULAR MAP");
+			//print ("CANNOT FIND SPECULAR MAP");
 		}
 		if (Resources.Load ("Import/Textures/" + name + "_n") as Texture) 
 		{
@@ -156,7 +158,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_n") as Texture != true)
 		{
-			print ("CANNOT FIND NORMAL MAP");
+			//print ("CANNOT FIND NORMAL MAP");
 		}
 		if (Resources.Load ("Import/Textures/" + name + "_c") as Texture) 
 		{
@@ -168,7 +170,7 @@ public class BV_BuildingShaderer : MonoBehaviour {
 		} 
 		else if (Resources.Load ("Import/Textures/" + name + "_c") as Texture != true)
 		{
-			print ("CANNOT FIND EMISSION (COLOR) MAP");
+			//print ("CANNOT FIND EMISSION (COLOR) MAP");
 			gameObject.GetComponent<Renderer> ().sharedMaterial.EnableKeyword("_EMISSION");
 			Color transparent = new Color(0.010f,0.001f,0.001f,0.001f);
 			gameObject.GetComponent<Renderer> ().sharedMaterial.SetColor("_EmissionColor", transparent);

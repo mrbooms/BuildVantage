@@ -66,6 +66,11 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 
 	//SETTERS :
 
+	public void setPayTaxes(bool value)
+	{
+		payTaxes = value;
+	}
+
 	public void setName(string name)
 	{
 		this.name = name;
@@ -110,43 +115,41 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 	//INITIALIZE THINGS FOR SWAPING FROM BUY TO BUILD STATE
 	public void BuyToBuild(int i)
 	{
+		//INSTANTIATE SHADERER SCRIPT
+		BV_BuildingShaderer shaderer = transform.GetComponent<BV_BuildingShaderer> ();
+		shaderer.updateColor ();
 		//INSTANTIATE CHILD SCRIPT
 		BV_Terrain terrainScript = childTerrain.GetComponent<BV_Terrain>();
 		//CHANGE CHILD COLOR
 		terrainScript.changeColor(i);
 		terrainScript.sendRPC(i);
+		myState = stateEnum.Build;
+		setValues();
 
 		switch(i)
 		{
 		case 0:
 			myOwner = ownerEnum.game;
-			myState = stateEnum.Build;
-			setValues();
 			break;
 		case 1:
 			myOwner = ownerEnum.playerBlue;
-			myState = stateEnum.Build;
-			setValues();
+			ownerID = 1;
 			break;
 		case 2:
 			myOwner = ownerEnum.playerGreen;
-			myState = stateEnum.Build;
-			setValues();
+			ownerID = 2;
 			break;
 		case 3:
 			myOwner = ownerEnum.playerOrange;
-			myState = stateEnum.Build;
-			setValues();
+			ownerID = 3;
 			break;
 		case 4:
 			myOwner = ownerEnum.playerRed;
-			myState = stateEnum.Build;
-			setValues();
+			ownerID = 4;
 			break;
 		case 5:
 			myOwner = ownerEnum.playerYellow;
-			myState = stateEnum.Build;
-			setValues();
+			ownerID = 5;
 			break;
 		}
 	}
@@ -168,6 +171,7 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 	//INITIALIZE THINGS FOR SWAPING FROM BUY TO BUILD STATE
 	public void ResetEverything()
 	{
+
 		//OWNER ID IS BACK GAME
 		ownerID = 0;
 		//RESET VALUES
@@ -201,9 +205,17 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 	//INITIALIZE ALL VALUES
 	public void setValues ()
 	{
+		//CLEAN VALUES
+		price = 0f;
+		taxes = 0f;
+		popularity = 0f;
+		influence = 0f;
+		income = 0f;
+		expenses = 0f;
+		total = 0f;
+
 		distance = Vector3.Distance (transform.position, Vector3.zero);
 		price = 10000 - distance;
-		
 		
 		//SET POPULARITY
 		if (payTaxes == true) 
@@ -217,22 +229,30 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 		//SET INFLUENCE
 		if (distance <= 1000) 
 		{
-			influence = 1000;
+			influence = 250;
 		}
 		else if (distance <= 2000 && distance > 1000) 
 		{
-			influence = 500;
+			influence = 200;
 		}
 		else if (distance <= 3000 && distance > 2000) 
 		{
+			influence = 150;
+		}
+		else if (distance <= 4000 && distance > 3000) 
+		{
 			influence = 100;
 		}
-		else if (distance > 3000) 
+		else if (distance <= 5000 && distance > 4000) 
+		{
+			influence = 50;
+		}
+		else if (distance > 0) 
 		{
 			influence = 0;
 		}
-		income = (price/12)+influence+popularity;
-		expenses = 30 + age;
+		income = (price/5)+influence+popularity;
+		expenses = (30 + age)/10;
 		
 		//SET Taxes
 		if (payTaxes == true) 
@@ -290,6 +310,13 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 				
 				if (Input.GetMouseButtonDown (1)) {
 					allowToMove = false;
+
+					if(myType == typeEnum.leisure)
+					{
+						transform.position = new Vector3(transform.position.x,
+						                                 transform.position.y-151f,
+						                                 transform.position.z);
+					}
 				}
 				
 				//HANDLES BUILDING ROTATION
@@ -350,6 +377,14 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 	//Update ########################################################################################
 	void Update()
 	{
+		distance = Vector3.Distance (transform.position, Vector3.zero);
+
+		if (ownerID != PhotonNetwork.player.ID && ownerID != 0) 
+		{
+			GetComponent<BoxCollider>().enabled = false;
+			childTerrain.GetComponent<BoxCollider>().enabled = false;
+		}
+
 		if (myState == stateEnum.Renovate) 
 		{
 			//RISING ANIMATION
@@ -358,5 +393,10 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 		}
 
 		handleAge ();
+
+		if (Application.loadedLevelName == "MapEditor") 
+		{
+			spawnBuilding();
+		}
 	}
 }

@@ -38,9 +38,9 @@ public class BV_GameGuiManager : MonoBehaviour {
 			if(Physics.Raycast (ray, out hit))
 			{
 				buildingGui.SetActive(true);
+				//buildingGui.SetActive(true);
 				BV_BuildingGui buildingGuiScript = buildingGui.GetComponent<BV_BuildingGui>();
 
-				//gameData.setSelectedObject(hit.transform.gameObject);
 				type = returnType(hit.transform.gameObject);
 				swapCollider(false);
 
