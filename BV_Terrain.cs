@@ -4,7 +4,6 @@ using Photon;
 
 public class BV_Terrain : Photon.MonoBehaviour
 {
-
 	//THIS INDICATE IF THE TERRAIN IS SELECTED
 	public bool selected = false;
 
@@ -45,6 +44,11 @@ public class BV_Terrain : Photon.MonoBehaviour
 	void OnJoinedRoom()
 	{
 		myPhotonView = this.GetComponent<PhotonView> ();
+
+		if (PhotonNetwork.isMasterClient)
+		{
+			myPhotonView.viewID = PhotonNetwork.AllocateSceneViewID();
+		}
 	}
 
 	public void sendRPC(int i)

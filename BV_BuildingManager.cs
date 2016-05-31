@@ -283,7 +283,7 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 		}
 		
 		
-		if (age == 10000 && myType == typeEnum.leisure && myState == stateEnum.Renovate) 
+		if (age == 1000000 && myType == typeEnum.leisure && myState == stateEnum.Renovate) 
 		{
 			ResetEverything();
 			setValues();
@@ -337,12 +337,33 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 
 	//TAKES CARE OF RPC MESSAGING ########################################################################################
 	private PhotonView myPhotonView;
-	
+
+	void OnCreatedRoom()
+	{
+		myPhotonView = this.GetComponent<PhotonView> ();
+		
+		if (PhotonNetwork.isMasterClient)
+		{
+			myPhotonView.viewID = PhotonNetwork.AllocateSceneViewID();
+		}
+	}
+	/*
 	void OnJoinedRoom()
 	{
 		myPhotonView = this.GetComponent<PhotonView> ();
-	}
 
+		if (PhotonNetwork.isMasterClient)
+		{
+			myPhotonView.viewID = PhotonNetwork.AllocateSceneViewID();
+		}
+	}*/
+//
+
+	public void setViewID(int i)
+	{
+		myPhotonView.viewID = i;
+	}
+//
 	public void sendRPCowner(int i)
 	{
 		this.photonView.RPC("rpcOwner", PhotonTargets.All, i);
@@ -354,7 +375,7 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 		Debug.Log ("rpcOwner");
 		BuyToBuild(i);
 	}
-	
+
 	public void sendRPCstate()
 	{
 		this.photonView.RPC("rpcState", PhotonTargets.All);
@@ -369,9 +390,11 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 	//START ########################################################################################
 	void Start()
 	{
+
 		//RESET ALL VALUES
 		startPos = transform.position;
 		ResetEverything ();
+
 	}
 
 	//Update ########################################################################################
@@ -399,4 +422,5 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 			spawnBuilding();
 		}
 	}
+
 }

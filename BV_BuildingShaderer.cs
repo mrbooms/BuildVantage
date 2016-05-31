@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Photon;
 
-public class BV_BuildingShaderer : MonoBehaviour {
+public class BV_BuildingShaderer : Photon.MonoBehaviour {
 
 	//SHADER VARIABLES
 	Material myMaterial;
@@ -32,9 +33,36 @@ public class BV_BuildingShaderer : MonoBehaviour {
 
 	}
 
+	void OnJoinedRoom()
+	{
+
+	}
 
 	void Update()
 	{
+		if (!PhotonNetwork.isMasterClient && gameObject.name.Contains("(Clone)")) 
+		{
+			gameObject.name = gameObject.name.Replace("(Clone)","").Trim();
+
+			//GETS THE NAME OF THE PREFAB AND THEN THE BUILDING BEHAVIOUR SCRIPT
+			myBuilding = gameObject.GetComponent<BV_BuildingManager> ();
+			
+			//INITIALIZE LAST OWNER
+			lastOwner = myBuilding.myOwner + "";
+			
+			//CREATE A MATERIAL AND A SHADER
+			myMaterial = new Material(Shader.Find("Standard (Specular setup)"));
+			
+			//MAKE THE TRANSPARENT PARTS (ALPHA CHANNEL) OF THE .PNG _d ALSO TRANSPARENT IN UNITY
+			presetAlphaChannel ();
+			
+			//LOAD THE MATERIAL INTO THE GAME OBJECT
+			gameObject.GetComponent<Renderer> ().material = myMaterial;
+			
+			//LOAD TEXTURE FILE IF EXISTS
+			loadTexture ();
+		}
+
 		//CREATE THE SCRIPT INSTANCE TO RETRIEVE ITS VALUES
 		myBuilding = gameObject.GetComponent<BV_BuildingManager> ();
 
