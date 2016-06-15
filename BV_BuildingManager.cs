@@ -339,13 +339,13 @@ public class BV_BuildingManager : Photon.MonoBehaviour {
 	private PhotonView myPhotonView;
 
 	void OnCreatedRoom()
-	{
+	{/*
 		myPhotonView = this.GetComponent<PhotonView> ();
 		
 		if (PhotonNetwork.isMasterClient)
 		{
 			myPhotonView.viewID = PhotonNetwork.AllocateSceneViewID();
-		}
+		}*/
 	}
 	/*
 	void OnJoinedRoom()

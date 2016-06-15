@@ -25,7 +25,7 @@ public class BV_MapImporter : Photon.MonoBehaviour {
 	void Start () 
 	{
 		if (Application.loadedLevelName == "test01") {
-			StartCoroutine (GetAll ());
+			//StartCoroutine (GetAll ());
 		} else {
 			//ADD LISTENER TO THE STATE BUTTON
 			button = gameObject.GetComponent<Button> ();
@@ -35,7 +35,7 @@ public class BV_MapImporter : Photon.MonoBehaviour {
 		
 	}
 	
-	void OnJoinedRoom()
+	void OnCreatedRoom()
 	{
 		if (PhotonNetwork.isMasterClient)
 		{
@@ -130,31 +130,20 @@ public class BV_MapImporter : Photon.MonoBehaviour {
 				}
 			}
 
-			Vector3 position = new Vector3(buildingPosX,buildingPosY,buildingPosZ);
-			Quaternion rotation = new Quaternion(buildingRotX, buildingRotY, buildingRotZ, buildingRotW);
-			GameObject building = PhotonNetwork.Instantiate(buildingName, position, rotation, 0);
-			building.name = buildingName;
-			BV_BuildingManager newBuildingScript = building.GetComponent<BV_BuildingManager> ();
-			newBuildingScript.allowToMove = false;
 
-			if(Resources.Load ("Prefabs/Buildings/" + buildingName))
+
+			if(buildingName != null)
 			{
-
-				//GameObject building = Resources.Load ("Prefabs/Buildings/" + buildingName) as GameObject;
-
-				//newBuilding.name = buildingName;
-				//BV_BuildingManager newBuildingScript = newBuilding.GetComponent<BV_BuildingManager> ();
-				//newBuildingScript.allowToMove = false;
-				//building = newBuilding;
-			}
-			else
-			{
-				//print ("ERROR###############DIDNt FIND BUILDING PREFAB FOR "+buildingName);
+				Vector3 position = new Vector3(buildingPosX,buildingPosY,buildingPosZ);
+				Quaternion rotation = new Quaternion(buildingRotX, buildingRotY, buildingRotZ, buildingRotW);
+				GameObject building = PhotonNetwork.Instantiate(buildingName, position, rotation, 0);
+				building.name = buildingName;
+				BV_BuildingManager newBuildingScript = building.GetComponent<BV_BuildingManager> ();
+				newBuildingScript.allowToMove = false;
 			}
 		}
 		
 		DBsize = answer.Length-1;
-		//print ("DB SIZE = " + DBsize);
 	}
 
 	IEnumerator GetAll()
@@ -238,11 +227,11 @@ public class BV_MapImporter : Photon.MonoBehaviour {
 				}
 			}
 
-			if(Resources.Load ("Prefabs/Buildings/" + buildingName))
+			if(Resources.Load (buildingName))
 			{
 				Vector3 position = new Vector3(buildingPosX,buildingPosY,buildingPosZ);
 				Quaternion rotation = new Quaternion(buildingRotX, buildingRotY, buildingRotZ, buildingRotW);
-				GameObject building = Resources.Load ("Prefabs/Buildings/" + buildingName) as GameObject;
+				GameObject building = Resources.Load (buildingName) as GameObject;
 				GameObject newBuilding = (GameObject)Instantiate (building, position, rotation);
 				newBuilding.name = buildingName;
 				BV_BuildingManager newBuildingScript = newBuilding.GetComponent<BV_BuildingManager> ();

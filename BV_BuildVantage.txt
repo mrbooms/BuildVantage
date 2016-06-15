@@ -1,0 +1,406 @@
+commit a6af3534c3c469eed8dc01a937e432b0ba00223b
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue May 31 17:49:28 2016 +0200
+
+    Author : Axel
+    FINAL COMMIT ;) ;) ;)
+
+commit 88dd45a952b6c37f1b7d0c29813788b27b7b1f23
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri May 27 20:58:22 2016 +0200
+
+    Revert "Author : Axel"
+    
+    This reverts commit 3a6616df147613227a5ed3620618c39df8e0d823.
+
+commit 3a6616df147613227a5ed3620618c39df8e0d823
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri May 27 20:57:41 2016 +0200
+
+    Author : Axel
+    change for User Acceptance test
+
+commit f3cfe9fd6e83dba748686c12e35e6ac406ed31e0
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu May 26 10:24:25 2016 +0200
+
+    Author : Axel
+    Small changes
+
+commit 897c21f818273210cb867867ed5277029c47e7ab
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat May 21 09:53:31 2016 +0200
+
+    Author : Axel
+    Some debugging here and there
+
+commit 6645124a193f486621463edd1dd5ebf2fbe42b2a
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon May 16 12:37:47 2016 +0200
+
+    Author : Axel
+    Tasks : Refactoring Building Class
+
+commit 1a72945bcffdff63ca914a8429d73c808fdaff01
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon May 16 10:20:35 2016 +0200
+
+    Author : Axel
+    Task : Refactoring UI
+
+commit 4034fe0a0e0b012826b3b0736ff255181fb67ee1
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu May 12 14:30:01 2016 +0200
+
+    Author : Axel
+    Task : Making GUI universal for Editor
+
+commit 5c248ae34f953ab166bc28260b5eed10ad3d85f9
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed May 11 18:51:46 2016 +0200
+
+    Author : Axel
+    Task : Fixed the Camera Bugs & Starts refactoring Web Service Client
+
+commit 2f16e2c5a02df7dcf257776d00d22076a7a45921
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed May 11 09:35:42 2016 +0200
+
+    Author : Axel
+    Task : Refactoring classes design for Building Gui
+
+commit fdfda1d7b4a78cb0e64b279f160b8eb042bcb28f
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed May 11 07:16:39 2016 +0200
+
+    Author : Axel
+    Task : Debugging RPC calls through Building GUI
+
+commit 91755c89d1609f4f4057dfc271625341b5d6a7a5
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat May 7 17:45:12 2016 +0200
+
+    Author : Axel
+    Task :C4 : Sales Building
+
+commit c2cfac800611bb845b8a71f19585f9cb12fee66b
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri May 6 18:44:50 2016 +0200
+
+    Author : Axel
+    Task :C4 : Sales Building
+
+commit 7a24ae67d928cc2769c7b1fe68706b3a9124d2c6
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu May 5 15:44:30 2016 +0200
+
+    Author : Axel
+    Task :C4 : Sales Building
+
+commit ecdd05682322c369164f8e5e0d8050208950fc93
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed May 4 16:44:09 2016 +0200
+
+    Author : Axel
+    Task :C2 : Buy
+
+commit 0f8e770e96e3bce11895b641413a037b02077484
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue May 3 14:43:49 2016 +0200
+
+    Author : Axel
+    Task :C1 : Display Asset GUI
+
+commit d3e12a19d65f40bdcbc9bcd2c6fb242650e93c41
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon May 2 17:43:06 2016 +0200
+
+    Author : Axel
+    Task :B4 : Spawn Players
+
+commit 6b998c9684e8ff95b9fe3bb433e4b0474311a3b6
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sun May 1 18:42:54 2016 +0200
+
+    Author : Axel
+    Task :B4 : Spawn Players
+
+commit 51ba9306314fda24ae3a950fc35fe949cafe78be
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat Apr 30 16:42:29 2016 +0200
+
+    Author : Axel
+    Task :B4 : Spawn Players
+
+commit ece30c4f42da212f406885bc245a43c661a604c7
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu Apr 28 14:42:09 2016 +0200
+
+    Author : Axel
+    Task :B3 : Launch Scene
+
+commit d27e25e82005a6f16678bf8c755d1c65389e6d2e
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed Apr 27 18:41:43 2016 +0200
+
+    Author : Axel
+    Task :B3 : Launch Scene
+
+commit 648644b3b0c01f01a5d45bcfba72848a0181626e
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue Apr 26 20:40:57 2016 +0200
+
+    Author : Axel
+    Task :B2 : Make Waiting Room
+
+commit 198fb344b51fc55f0529849e1c9360297b8dc0a2
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon Apr 25 12:40:41 2016 +0200
+
+    Author : Axel
+    Task :B2 : Make Waiting Room
+
+commit a7524f3691c8af9dac4b919ffe1d900eb7764fb0
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sun Apr 24 15:40:26 2016 +0200
+
+    Author : Axel
+    Task :B2 : Make Waiting Room
+
+commit 68b02f346e300bc40b5665c9d9d40d7f35a6f44d
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat Apr 23 14:39:58 2016 +0200
+
+    Author : Axel
+    Task :B2 : Make Waiting Room
+
+commit 43b45d0f0e8553ae01bbbf21db11d3aea25abe7d
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri Apr 22 12:39:40 2016 +0200
+
+    Author Axel & Kristian
+    Task :  E7 : Login
+
+commit fc4d73bc3cc5b480d20a570d80df96807a85bf14
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu Apr 21 17:39:28 2016 +0200
+
+    Author Axel & Kristian
+    Task :  E7 : Login
+
+commit 3c82113806bcb5f652c01b1a1631b9c71d805d68
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed Apr 20 15:39:15 2016 +0200
+
+    Author Axel & Kristian
+    Task :  E7 : Login
+
+commit 4b48c599b2a9d98c17d4cf2b16b4ef2948b93d57
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue Apr 19 16:39:00 2016 +0200
+
+    Author Axel & Kristian
+    Task :  E7 : Login
+
+commit cd914a3523d3e724fcf353a55c96bf7aa1c74af4
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon Apr 18 15:38:20 2016 +0200
+
+    Author : Axel & Krisztian
+    Task : E9 : Sort Data from profile webservice
+
+commit 9bf1e14bf2ebc5fc9dd7a6ea81ffda45e46ebb98
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sun Apr 17 16:38:05 2016 +0200
+
+    Author : Axel & Krisztian
+    Task : E9 : Sort Data from profile webservice
+
+commit 69e323d0ee8d89cf641d6e1b0f0312ed7be92d8e
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat Apr 16 15:37:35 2016 +0200
+
+    Author : Axel & Krisztian
+    Task : E8 : Retrieve Data from Profile Webservice
+
+commit 5216ad835b7ffe049d70bb76e226305bdc6e85d0
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri Apr 15 16:37:13 2016 +0200
+
+    Author : Axel & Krisztian
+    Task : E8 : Retrieve Data from Profile Webservice
+
+commit 272aad988e0f1db84e59f59c2bf3154ddf962e37
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu Apr 14 15:36:04 2016 +0200
+
+    Author : Axel
+    Task : E6 : Save Filled in Form
+
+commit 855469f91e446fadd9c3cc67e209f66cf7fad7f2
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed Apr 13 14:35:44 2016 +0200
+
+    Author : Axel
+    Task : E6 : Save Filled in Form
+
+commit 591f27a265ab33e726faf841a62dcf38deb711c7
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue Apr 12 17:35:04 2016 +0200
+
+    Author : Axel
+    Task :E5 : TOggle Form
+
+commit 14f65f1feb57f80033db99fced7d180319ac80bc
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon Apr 11 18:34:43 2016 +0200
+
+    Author : Axel
+    Task : E5 : TOggle Form
+
+commit 5f456882c2a78be6d3ca4bd2e5624dffe88715fa
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sun Apr 10 17:34:28 2016 +0200
+
+    Author : Axel
+    Task : E5 : TOggle Form
+
+commit 1ddc18ac1148c7111cb22399a0c49ef6ffd97423
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat Apr 9 16:33:35 2016 +0200
+
+    Author : Axel
+    Task : E4 : Connect WB & Game
+
+commit 1c7285cb4bd7098091f1940a0220d32ff66ef0d6
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri Apr 8 15:33:09 2016 +0200
+
+    Author : Axel
+    Task : E4 : Connect WB & Game
+
+commit 9ec9d72c26d336e00327020b74400518a08a48b7
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu Mar 31 14:32:24 2016 +0200
+
+    Author : Axel
+    Task : G5 : Connect Game & WB
+
+commit dff239b64870cfd1f791fb8d21fc64a6050b4255
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed Mar 30 15:32:08 2016 +0200
+
+    Author : Axel
+    Task : G5 : Connect Game & WB
+
+commit 01a6171252047c196258e3eafe59a33cf3173738
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue Mar 29 17:31:14 2016 +0200
+
+    Author : Axel
+    Task : G5 : Connect Game & WB
+
+commit ce6ae50422bdde36114fedf315ef0bdc4ad1895d
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed Mar 16 15:30:17 2016 +0100
+
+    Author : Axel
+    Task : F5 : Implement Cam in Game
+
+commit dc61c66e1bef0a9fe5a0112c04e58ba3fb169072
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue Mar 15 17:30:01 2016 +0100
+
+    Author : Axel
+    Task : F5 : Implement Cam in Game
+
+commit be39b66937cd140e785f2ce5db822f0aeec08807
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon Mar 14 15:29:40 2016 +0100
+
+    Author : Axel
+    Task : F1 : Move Camera
+
+commit 63bc7e3868e746400ce9dc89a5d0fc993b82fd7f
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sun Mar 13 17:29:23 2016 +0100
+
+    Author : Axel
+    Task : F1 : Move Camera
+
+commit ec75163585998b25fc17da8b196f1894cd56efad
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat Mar 12 17:29:11 2016 +0100
+
+    Author : Axel
+    Task : F1 : Move Camera
+
+commit 25f718560e9bdd69fb577a28aefa80b4a73a4ea6
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri Mar 11 14:28:41 2016 +0100
+
+    Author : Axel
+    Task : F3 : Move Building
+
+commit 55dfa1fd753f0827e71d5005e7919dce245d6204
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Thu Mar 10 17:28:28 2016 +0100
+
+    Author : Axel
+    Task : F3 : Move Building
+
+commit 0a166a091a4f71fca6917cf6257afa7d0c104016
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Wed Mar 9 19:28:11 2016 +0100
+
+    Author : Axel
+    Task : F2: Rotate Camera
+
+commit 153bcf982213c637895e25f4754d89ef7e1fb75c
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue Mar 8 20:27:48 2016 +0100
+
+    Author : Axel
+    Task : F4 : Rotate buildings
+
+commit 0356e5f01ef210dc6be5353f669fe969df5ddd4e
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Mon Mar 7 18:27:19 2016 +0100
+
+    Author : Axel
+    Task : F4 : Rotate buildings
+
+commit 280e9062c0c3587e8cddaa7285bb3849449975c9
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sun Mar 6 16:26:57 2016 +0100
+
+    Author : Axel
+    Task : F4 : Rotate buildings
+
+commit 264d8161fd85ed57f21fd602312672344618ec32
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Sat Mar 5 16:25:42 2016 +0100
+
+    Author : Axel
+    Task : G1: Create interface
+
+commit ebd07d8c7604d54c67fe435e5050adb4a40d3717
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri Mar 4 16:25:26 2016 +0100
+
+    Author : Axel
+    Task : G1: Create interface
+
+commit 4769755290e9d5718948081ea8e8c2dd00278844
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Fri Mar 4 16:24:41 2016 +0100
+
+    Author : Axel
+    Task : G1: Create interface
+
+commit 981f3ee4d7e6c3d4995ee31b32d2f7e7566fc611
+Author: Axel Kiebooms <axel.kiebooms@orange.fr>
+Date:   Tue Mar 1 17:24:06 2016 +0100
+
+    Author : Axel
+    Task : G1: Create interface

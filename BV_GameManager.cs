@@ -1,7 +1,17 @@
 using UnityEngine;
 using System.Collections;
 
+
+
 public class BV_GameManager : Photon.MonoBehaviour {
+
+    [SerializeField]
+    private GameObject map;
+
+    void Start()
+    {
+        Instantiate(map, new Vector3(-4000, 0, -4000), Quaternion.identity);
+    }
 
     void OnGUI()
     {

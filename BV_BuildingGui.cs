@@ -15,6 +15,7 @@ public class BV_BuildingGui : Photon.MonoBehaviour {
 	BV_BuildingManager buildingScript;
 
 	//SETTER
+    
 	public void setBuilding(GameObject building)
 	{
 		this.building = building;
@@ -60,7 +61,11 @@ public class BV_BuildingGui : Photon.MonoBehaviour {
 	//UPDATE GUI OF BUILDING WINDOW
 	public void setValues()
 	{
-		//GET SCRIPT FROM SELECTED TERRAIN
+        //GET SCRIPT FROM SELECTED TERRAIN
+        //
+        //GameObject guimanager = GameObject.Find("GameScripts").GetComponent<BV_GameGuiManager>();
+       // print("TST RAYCAST");
+        //
 		buildingScript = building.GetComponent<BV_BuildingManager>();
 		string s;
 		Text newtext;
@@ -87,6 +92,7 @@ public class BV_BuildingGui : Photon.MonoBehaviour {
 				newtext = child.transform.Find("StateText").GetComponent<Text>();
 				newtext.text = s;
 				print ("BV_BuildingGui : succeeded changing state btn text");
+                        
 				//ADD LISTENER TO THE STATE BUTTON
 				stateBtn.onClick.AddListener (() => {
 					clickStateBtn ();});

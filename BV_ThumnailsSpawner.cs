@@ -28,7 +28,7 @@ public class BV_ThumnailsSpawner : MonoBehaviour
 
 	public void clickThumbnail()
 	{
-		building = Resources.Load ("Prefabs/Buildings/" + name) as GameObject;
+		building = Resources.Load (name) as GameObject;
 		GameObject newBuilding = (GameObject)Instantiate (building, Vector3.zero, Quaternion.identity);
 		newBuilding.name = name;
 		BV_BuildingManager newBuildingScript = newBuilding.GetComponent<BV_BuildingManager> ();
